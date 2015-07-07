@@ -132,21 +132,21 @@ Element to append/prepend cookieBar to. Remember `.` for class or `#` for id. (d
 ### CookieLawWait directive
 
 ```html
-<cookies-law-wait>
+<cookie-law-wait>
     <div>...</div>
-</cookies-law-wait>
+</cookie-law-wait>
 ```
 
 The `divs` inside `<cookie-law-wait>` directive are loaded only after cookies are accepted.
 
-### CookiesLawService
+### CookieLawService
 
 This service provides a function to know if cookies are accepted.
 
 First you need to inject ``CookieLawService`` into your angular controller or directive.
 
 ```
-angular.module('myApp').controller('MyCtrl', ['CookiesLawService']);
+angular.module('myApp').controller('MyCtrl', ['CookieLawService']);
 ```
 
 #### isEnabled
@@ -161,10 +161,10 @@ CookieLawService.isEnabled(); //true or false
 
 #### Accept event
 
-The event `cookiesLaw.accept` is triggered when cookies are accepted.
+The event `cookieLaw.accept` is triggered when cookies are accepted.
 
 ```
-$scope.$on('cookiesLaw.accept', function() {
+$scope.$on('cookieLaw.accept', function() {
     //callback function
 });
 ```
@@ -174,7 +174,7 @@ $scope.$on('cookiesLaw.accept', function() {
 The event `cookieLaw.dismiss` is triggered when cookies banner is closed.
 
 ```
-$scope.$on('cookiesLaw.dismiss', function() {
+$scope.$on('cookieLaw.dismiss', function() {
     //callback function
 });
 ```
@@ -184,7 +184,7 @@ $scope.$on('cookiesLaw.dismiss', function() {
 The event `cookieLaw.decline` is triggered when cookies are declined.
 
 ```
-$scope.$on('cookiesLaw.decline', function() {
+$scope.$on('cookieLaw.decline', function() {
     //callback function
 });
 ```
