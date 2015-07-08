@@ -1,7 +1,13 @@
 {
   "name": "angular-cookie-law",
   "version": "0.1.1",
-  "description": "",
+  "description": "Angular module that provides a banner to inform users about cookie law",
+  "keywords": [
+    "angular",
+    "cookie",
+    "cookie law",
+    "banner"
+  ],
   "main": "gulpfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

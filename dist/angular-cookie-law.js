@@ -1,5 +1,5 @@
 /**
- * angular-cookie-law - @version v0.1.0 - @author palmabit.com
+ * angular-cookie-law - @version v0.1.1 - @author palmabit.com
  */
 'use strict';
 
@@ -20,9 +20,7 @@ angular.module('angular-cookie-law')
           var template, options, expireDate,
               acceptButton = '',
               declineButton = '',
-              policyButton = '',
-              fixed = '',
-              zindex = '';
+              policyButton = '';
 
           if (CookieLawService.isEnabled()) {
             return;
@@ -38,19 +36,8 @@ angular.module('angular-cookie-law')
             policyText: attr.policyText || 'Privacy Policy', //Text on Privacy Policy button
             policyURL: attr.policyUrl || '/privacy-policy/', //URL of Privacy Policy
             policyBlank: attr.policyBlank && attr.policyBlank === 'true' ? 'target="_blank"' : '',
-            autoEnable: attr.autoEnable || true, //Set to true for cookies to be accepted automatically. Banner still shows
-            acceptOnContinue: attr.acceptOnContinue || false, //Set to true to silently accept cookies when visitor moves to another page
             expireDays: attr.expireDays || 365, //Number of days for cookieBar cookie to be stored for
-            forceShow: attr.forceShow || false, //Force cookieBar to show regardless of user cookie preference
-            effect: attr.effect || 'slide', //Options: slide, fade, hide
-            element: attr.element || 'body', //Element to append/prepend cookieBar to. Remember "." for class or "#" for id.
-            append: attr.append || false, //Set to true for cookieBar HTML to be placed at base of website. YMMV
-            fixed: attr.fixed || false, //Set to true to add the class "fixed" to the cookie bar. Default CSS should fix the position
-            bottom: attr.bottom || false, //Force CSS when fixed, so bar appears at bottom of website
-            zindex: attr.zindex || '', //Can be set in CSS, although some may prefer to set here
-            redirect: attr.redirect || String(window.location.href), //Current location
-            domain: attr.domain || String(window.location.hostname), //Location of privacy policy
-            referrer: attr.referrer || String(document.referrer) //Where visitor has come from
+            element: attr.element || 'body' //Element to append/prepend cookieBar to. Remember "." for class or "#" for id.
           };
 
           //Sets expiration date for cookie
@@ -68,18 +55,6 @@ angular.module('angular-cookie-law')
 
           if (options.policyButton) {
             policyButton = ' <a href="' + options.policyURL + '" class="cl-policy" ' + options.policyBlank + '>' + options.policyText + '</a>';
-          }
-
-          if (options.fixed) {
-            if (options.bottom) {
-              fixed = ' class="fixed bottom"';
-            } else {
-              fixed = ' class="fixed"';
-            }
-          }
-
-          if (options.zindex != '') {
-            zindex = ' style="z-index:' + options.zindex + ';"';
           }
 
           template = '<div class="cl-banner"><p>' + options.message + '<br>' + acceptButton + declineButton + policyButton + '</p></div>';
@@ -126,7 +101,7 @@ angular.module('angular-cookie-law')
         transclude: true,
         scope: false,
         link: function link(scope, element, attrs, controller, transclude) {
-          function loadTrasclude () {
+          function loadTransclude () {
             element.html('');
 
             transclude(scope, function (clone) {
@@ -136,11 +111,11 @@ angular.module('angular-cookie-law')
           }
 
           if (CookieLawService.isEnabled()) {
-            loadTrasclude();
+            loadTransclude();
           }
 
           scope.$on('cookieLaw.accept', function () {
-            loadTrasclude();
+            loadTransclude();
           });
         }
       };
