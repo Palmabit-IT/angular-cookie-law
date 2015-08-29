@@ -4,7 +4,7 @@
   "main": [
     "dist/angular-cookie-law.min.js",
     "dist/angular-cookie-law.min.css"
-  ]
+  ],
   "description": "Angular module that provides a banner to inform users about cookie law",
   "keywords": [
     "angular",
