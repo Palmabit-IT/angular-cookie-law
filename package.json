@@ -1,6 +1,6 @@
 {
   "name": "angular-cookie-law",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Angular module that provides a banner to inform users about cookie law",
   "keywords": [
     "angular",
