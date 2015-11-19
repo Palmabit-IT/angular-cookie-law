@@ -34,7 +34,7 @@ Add a `<script>` and `<style>` to your `index.html`:
 
 First you need to inject ``angular-cookie-law`` into your angular module.
 
-```
+```javascript
 angular.module('myApp', ['angular-cookie-law']);
 ```
 
@@ -49,6 +49,8 @@ You could insert this directive at the beginning of `<body>` tag.
 This directive create a banner that inform users about cookies that contains a button to accept them.
 
 ### Options
+
+From version 0.2.0, all banner texts are refreshed if one of these attributes change: **message**, **acceptText**, **declineText**, **policyText**, **policyURL**.
 
 #### message
 
@@ -154,7 +156,7 @@ This service provides a function to know if cookies are accepted.
 
 First you need to inject ``CookieLawService`` into your angular controller or directive.
 
-```
+```javascript
 angular.module('myApp').controller('MyCtrl', ['CookieLawService']);
 ```
 
@@ -162,7 +164,7 @@ angular.module('myApp').controller('MyCtrl', ['CookieLawService']);
 
 This function tells you if cookies are accepted.
 
-```
+```javascript
 CookieLawService.isEnabled(); //true or false
 ```
 
@@ -172,7 +174,7 @@ CookieLawService.isEnabled(); //true or false
 
 The event `cookieLaw.accept` is triggered when cookies are accepted.
 
-```
+```javascript
 $scope.$on('cookieLaw.accept', function() {
     //callback function
 });
@@ -182,7 +184,7 @@ $scope.$on('cookieLaw.accept', function() {
 
 The event `cookieLaw.dismiss` is triggered when cookies banner is closed.
 
-```
+```javascript
 $scope.$on('cookieLaw.dismiss', function() {
     //callback function
 });
@@ -192,7 +194,7 @@ $scope.$on('cookieLaw.dismiss', function() {
 
 The event `cookieLaw.decline` is triggered when cookies are declined.
 
-```
+```javascript
 $scope.$on('cookieLaw.decline', function() {
     //callback function
 });
