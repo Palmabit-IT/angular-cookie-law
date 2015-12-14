@@ -204,3 +204,6 @@ $scope.$on('cookieLaw.decline', function() {
 
 [palmabit.com](http://www.palmabit.com)
 
+## License
+
+The MIT License (MIT). Please see [License File](LICENSE) for more information.
