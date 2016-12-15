@@ -24,7 +24,7 @@ angular.module('angular-cookie-law')
 
             options = {
               message: attr.message || 'We use cookies to track usage and preferences.', //Message displayed on bar
-              acceptButton: attr.acceptButton || true, //Set to true to show accept/enable button
+              acceptButton: attr.acceptButton === 'false' ? false : true, //Set to true to show accept/enable button
               acceptText: attr.acceptText || 'I Understand', //Text on accept/enable button
               declineButton: attr.declineButton || false, //Set to true to show decline/disable button
               declineText: attr.declineText || 'Disable Cookies', //Text on decline/disable button
