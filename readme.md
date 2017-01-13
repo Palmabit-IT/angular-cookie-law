@@ -200,6 +200,14 @@ $scope.$on('cookieLaw.decline', function() {
 });
 ```
 
+#### Change the name of the cookie
+
+To change the name of the cookie, simply add the following line to your code.
+
+```
+angular.module('angular-cookie-law').value('cookieLawName', 'cookieMessage');
+```
+
 ## Author
 
 [palmabit.com](http://www.palmabit.com)
