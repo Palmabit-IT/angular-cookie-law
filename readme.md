@@ -2,8 +2,8 @@
 
 **Angular cookie law** provides:
 
-* a directive for a popup banner that inform users about cookies
-* a directive that blocks some code or other directive until cookies are accepted
+* a directive for a popup banner that informs users about cookies
+* a directive that blocks some code or another directive until cookies are accepted
 * a service to block external services (eg. YouTube, Facebook) until cookies are accepted
 
 ## Install
@@ -32,7 +32,7 @@ Add a `<script>` and `<style>` to your `index.html`:
 
 ## Usage
 
-First you need to inject ``angular-cookie-law`` into your angular module.
+First, you need to inject ``angular-cookie-law`` into your angular module.
 
 ```javascript
 angular.module('myApp', ['angular-cookie-law']);
@@ -46,7 +46,7 @@ You could insert this directive at the beginning of `<body>` tag.
 <cookie-law-banner message="Your custon message" policy-url="http://link-to-your-policy"></cookie-law-banner>
 ```
 
-This directive create a banner that inform users about cookies that contains a button to accept them.
+This directive creates a banner that informs users about cookies that contains a button to accept them.
 
 ### Options
 
@@ -55,7 +55,7 @@ From version 0.2.0, all banner texts are refreshed if one of these attributes ch
 #### message
 
 ```
-message: 'Your custome message'
+message: 'Your custom message'
 ```
 
 The message to be shown with banner (default: "We use cookies to track usage and preferences").
@@ -148,13 +148,13 @@ Element to append/prepend cookieBar to. Remember `.` for class or `#` for id. (d
 </cookie-law-wait>
 ```
 
-The `divs` inside `<cookie-law-wait>` directive are loaded only after cookies are accepted.
+The `divs` inside `<cookie-law-wait>` directive is loaded only after cookies are accepted.
 
 ### CookieLawService
 
 This service provides a function to know if cookies are accepted.
 
-First you need to inject ``CookieLawService`` into your angular controller or directive.
+First, you need to inject ``CookieLawService`` into your angular controller or directive.
 
 ```javascript
 angular.module('myApp').controller('MyCtrl', ['CookieLawService']);
