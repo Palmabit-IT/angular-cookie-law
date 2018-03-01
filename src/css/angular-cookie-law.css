@@ -9,9 +9,16 @@
   z-index: 10000;
 
   position: fixed;
-  top: 0;
   left: 0;
   width: 100%;
+}
+
+.cl-banner.top {
+  top: 0;
+}
+
+.cl-banner.bottom {
+  bottom: 0;
 }
 
 /*
