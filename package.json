@@ -8,7 +8,7 @@
     "cookie law",
     "banner"
   ],
-  "main": "gulpfile.js",
+  "main": "dist/angular-cookie-law.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
