@@ -43,7 +43,7 @@ angular.module('myApp', ['angular-cookie-law']);
 You could insert this directive at the beginning of `<body>` tag.
 
 ```html
-<cookie-law-banner message="Your custom message" policy-url="http://link-to-your-policy"></cookie-law-banner>
+<cookie-law-banner position="top" message="Your custom message" policy-url="http://link-to-your-policy"></cookie-law-banner>
 ```
 
 This directive creates a banner that informs users about cookies that contains a button to accept them.
@@ -51,6 +51,14 @@ This directive creates a banner that informs users about cookies that contains a
 ### Options
 
 From version 0.2.0, all banner texts are refreshed if one of these attributes change: **message**, **acceptText**, **declineText**, **policyText**, **policyURL**.
+
+#### position 
+
+```
+position: 'top'
+```
+
+Position of the banner (variants: "top", "bottom". default: "top").
 
 #### message
 

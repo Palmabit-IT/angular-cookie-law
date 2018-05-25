@@ -5,6 +5,7 @@ angular.module('angular-cookie-law')
         restrict: 'EA',
         replace: true,
         scope: {
+          position: '@',
           message: '@',
           acceptText: '@',
           declineText: '@',
@@ -17,12 +18,13 @@ angular.module('angular-cookie-law')
               declineButton = '',
               policyButton = '';
 
-          scope.$watchGroup(['message', 'acceptText', 'declineText', 'policyText', 'policyURL'], function() {
+          scope.$watchGroup(['position', 'message', 'acceptText', 'declineText', 'policyText', 'policyURL'], function() {
             if (CookieLawService.isEnabled()) {
               return;
             }
 
             options = {
+              position: attr.position === 'bottom' ? 'bottom' : 'top', //Position of the banner. (Default: 'top')
               message: attr.message || 'We use cookies to track usage and preferences.', //Message displayed on bar
               acceptButton: attr.acceptButton === 'false' ? false : true, //Set to true to show accept/enable button
               acceptText: attr.acceptText || 'I Understand', //Text on accept/enable button
@@ -55,7 +57,7 @@ angular.module('angular-cookie-law')
             }
 
             template =
-              '<div class="cl-banner"><p>' + options.message + '<br>' + acceptButton + declineButton + policyButton + '</p></div>';
+              '<div class="cl-banner ' + options.position + '"><p>' + options.message + '<br>' + acceptButton + declineButton + policyButton + '</p></div>';
 
             element.html(template);
             $compile(element.contents())(scope);
