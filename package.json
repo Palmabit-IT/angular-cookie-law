@@ -1,5 +1,5 @@
 {
-  "name": "angular-cookie-law",
+  "name": "@palmabit/angular-cookie-law",
   "version": "0.2.4",
   "description": "Angular module that provides a banner to inform users about cookie law",
   "keywords": [
