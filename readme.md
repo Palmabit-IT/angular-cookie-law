@@ -8,26 +8,20 @@
 
 ## Install
 
-You can install this package with `bower` or `npm`.
-
-#### bower
-
-```shell
-bower install angular-cookie-law --save
-```
+You can install this package with `npm`.
 
 #### npm
 
 ```shell
-npm install angular-cookie-law --save
+npm i @palmabit/angular-cookie-law --save
 ```
 
 Add a `<script>` and `<style>` to your `index.html`:
 
 ```html
-<link rel="stylesheet" href="/bower_components/angular-cookie-law/dist/angular-cookie-law.min.css">
+<link rel="stylesheet" href="/node_modules/angular-cookie-law/dist/angular-cookie-law.min.css">
 
-<script src="/bower_components/angular-cookie-law/dist/angular-cookie-law.min.js"></script>
+<script src="/node_modules/angular-cookie-law/dist/angular-cookie-law.min.js"></script>
 ```
 
 ## Usage
