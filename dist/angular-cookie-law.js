@@ -1,5 +1,5 @@
 /**
- * @palmabit/angular-cookie-law - @version v0.3.1 - @author Palmabit Srl<hello@palmabit.com>
+ * @palmabit/angular-cookie-law - @version v0.3.2 - @author Palmabit Srl<hello@palmabit.com>
  */
 'use strict';
 
@@ -9,6 +9,59 @@ angular.module('angular-cookie-law')
     .value('cookieLawName', '_cle')
     .value('cookieLawAccepted', 'accepted')
     .value('cookieLawDeclined', 'declined');
+angular.module('angular-cookie-law')
+
+    .factory('CookieLawService', [
+      'CookieService',
+      'cookieLawName',
+      'cookieLawAccepted',
+      'cookieLawDeclined',
+      function (CookieService, cookieLawName, cookieLawAccepted, cookieLawDeclined) {
+        var accept = function (expireDate) {
+          CookieService.set(cookieLawName, cookieLawAccepted + ';expires=' + expireDate);
+        };
+
+        var decline = function () {
+          CookieService.set(cookieLawName, cookieLawDeclined);
+        };
+
+        var isEnabled = function () {
+          return CookieService.get(cookieLawName) === cookieLawAccepted;
+        };
+
+        return {
+          accept: accept,
+          decline: decline,
+          isEnabled: isEnabled
+        }
+      }]);
+angular.module('angular-cookie-law')
+
+    .factory('CookieService', function () {
+      var readCookie = function (key) {
+        var nameEQ = key + "=";
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+          var c = ca[i];
+          while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+          if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+        }
+        return null;
+      }
+
+      var get = function (key) {
+        return readCookie(key);
+      };
+
+      var set = function (key, value) {
+        document.cookie = key + '=' + value;
+      };
+
+      return {
+        get: get,
+        set: set
+      }
+    });
 angular.module('angular-cookie-law')
 
     .directive('cookieLawBanner', ['$compile', 'CookieLawService', function ($compile, CookieLawService) {
@@ -132,56 +185,3 @@ angular.module('angular-cookie-law')
         }
       };
     }]);
-angular.module('angular-cookie-law')
-
-    .factory('CookieLawService', [
-      'CookieService',
-      'cookieLawName',
-      'cookieLawAccepted',
-      'cookieLawDeclined',
-      function (CookieService, cookieLawName, cookieLawAccepted, cookieLawDeclined) {
-        var accept = function (expireDate) {
-          CookieService.set(cookieLawName, cookieLawAccepted + ';expires=' + expireDate);
-        };
-
-        var decline = function () {
-          CookieService.set(cookieLawName, cookieLawDeclined);
-        };
-
-        var isEnabled = function () {
-          return CookieService.get(cookieLawName) === cookieLawAccepted;
-        };
-
-        return {
-          accept: accept,
-          decline: decline,
-          isEnabled: isEnabled
-        }
-      }]);
-angular.module('angular-cookie-law')
-
-    .factory('CookieService', function () {
-      var readCookie = function (key) {
-        var nameEQ = key + "=";
-        var ca = document.cookie.split(';');
-        for (var i = 0; i < ca.length; i++) {
-          var c = ca[i];
-          while (c.charAt(0) == ' ') c = c.substring(1, c.length);
-          if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
-        }
-        return null;
-      }
-
-      var get = function (key) {
-        return readCookie(key);
-      };
-
-      var set = function (key, value) {
-        document.cookie = key + '=' + value;
-      };
-
-      return {
-        get: get,
-        set: set
-      }
-    });
