@@ -11,59 +11,6 @@ angular.module('angular-cookie-law')
     .value('cookieLawDeclined', 'declined');
 angular.module('angular-cookie-law')
 
-    .factory('CookieLawService', [
-      'CookieService',
-      'cookieLawName',
-      'cookieLawAccepted',
-      'cookieLawDeclined',
-      function (CookieService, cookieLawName, cookieLawAccepted, cookieLawDeclined) {
-        var accept = function (expireDate) {
-          CookieService.set(cookieLawName, cookieLawAccepted + ';expires=' + expireDate);
-        };
-
-        var decline = function () {
-          CookieService.set(cookieLawName, cookieLawDeclined);
-        };
-
-        var isEnabled = function () {
-          return CookieService.get(cookieLawName) === cookieLawAccepted;
-        };
-
-        return {
-          accept: accept,
-          decline: decline,
-          isEnabled: isEnabled
-        }
-      }]);
-angular.module('angular-cookie-law')
-
-    .factory('CookieService', function () {
-      var readCookie = function (key) {
-        var nameEQ = key + "=";
-        var ca = document.cookie.split(';');
-        for (var i = 0; i < ca.length; i++) {
-          var c = ca[i];
-          while (c.charAt(0) == ' ') c = c.substring(1, c.length);
-          if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
-        }
-        return null;
-      }
-
-      var get = function (key) {
-        return readCookie(key);
-      };
-
-      var set = function (key, value) {
-        document.cookie = key + '=' + value;
-      };
-
-      return {
-        get: get,
-        set: set
-      }
-    });
-angular.module('angular-cookie-law')
-
     .directive('cookieLawBanner', ['$compile', 'CookieLawService', function ($compile, CookieLawService) {
       return {
         restrict: 'EA',
@@ -134,8 +81,10 @@ angular.module('angular-cookie-law')
             };
 
             scope.decline = function() {
-              CookieLawService.decline();
+              CookieLawService.decline(expireDate);
               scope.onDecline();
+              element.remove();
+              scope.onDismiss();
             };
           });
         },
@@ -185,3 +134,66 @@ angular.module('angular-cookie-law')
         }
       };
     }]);
+angular.module('angular-cookie-law')
+
+    .factory('CookieLawService', [
+      'CookieService',
+      'cookieLawName',
+      'cookieLawAccepted',
+      'cookieLawDeclined',
+      function (CookieService, cookieLawName, cookieLawAccepted, cookieLawDeclined) {
+        var accept = function (expireDate) {
+          CookieService.set(cookieLawName, cookieLawAccepted + ';expires=' + expireDate);
+        };
+
+        var decline = function (expireDate) {
+          CookieService.set(cookieLawName, cookieLawDeclined + ';expires=' + expireDate);
+        };
+
+        var isEnabled = function () {
+          return CookieService.get(cookieLawName) === cookieLawAccepted || CookieService.get(cookieLawName) === cookieLawDeclined;
+        };
+
+        var isAccepted = function () {
+          return CookieService.get(cookieLawName) === cookieLawAccepted;
+        };
+
+        var isDeclined = function () {
+          return CookieService.get(cookieLawName) === cookieLawDeclined;
+        };
+
+        return {
+          accept: accept,
+          decline: decline,
+          isEnabled: isEnabled,
+          isAccepted: isAccepted,
+          isDeclined: isDeclined
+        }
+      }]);
+angular.module('angular-cookie-law')
+
+    .factory('CookieService', function () {
+      var readCookie = function (key) {
+        var nameEQ = key + "=";
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+          var c = ca[i];
+          while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+          if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+        }
+        return null;
+      }
+
+      var get = function (key) {
+        return readCookie(key);
+      };
+
+      var set = function (key, value) {
+        document.cookie = key + '=' + value;
+      };
+
+      return {
+        get: get,
+        set: set
+      }
+    });
