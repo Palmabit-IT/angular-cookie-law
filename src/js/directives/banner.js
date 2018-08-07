@@ -70,8 +70,10 @@ angular.module('angular-cookie-law')
             };
 
             scope.decline = function() {
-              CookieLawService.decline();
+              CookieLawService.decline(expireDate);
               scope.onDecline();
+              element.remove();
+              scope.onDismiss();
             };
           });
         },
