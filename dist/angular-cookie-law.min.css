@@ -1,4 +1,4 @@
 /**
- * @palmabit/angular-cookie-law - @version v0.3.2 - @author Palmabit Srl<hello@palmabit.com>
+ * @palmabit/angular-cookie-law - @version v0.4.0 - @author Palmabit Srl<hello@palmabit.com>
  */
 .cl-banner{background:#000;height:auto;min-height:24px;line-height:24px;color:#eee;text-align:center;padding:15px 25px;z-index:10000;position:fixed;left:0;width:100%}.cl-banner.top{top:0}.cl-banner.bottom{bottom:0}.cl-banner p{color:#fff;margin:0;padding:0}.cl-banner a{color:#fff;display:inline-block;border-radius:3px;text-decoration:none;padding:0 6px;margin:11px 20px 0}.cl-banner .cl-accept{background:#070}.cl-banner .cl-accept:hover{background:#090}.cl-banner .cl-disable{background:#900}.cl-banner .cl-disable:hover{background:#b00}.cl-banner .cl-policy{background:#03b}.cl-banner .cl-policy:hover{background:#05d}
