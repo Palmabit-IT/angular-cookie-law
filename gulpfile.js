@@ -19,24 +19,24 @@ var banner = ['/**',
 var destFileName = 'angular-cookie-law';
 
 
-gulp.task('clean', function (cb) {
+gulp.task('clean', function clean (cb) {
   return del(['dist'], cb);
 });
 
-gulp.task('csslint', function () {
+gulp.task('csslint', function csslint () {
 //  return gulp.src(['./src/css/*', './src/css/**/*'])
 //      .pipe(plugins.csslint('.csslintrc'))
 //      .pipe(plugins.csslint.reporter())
 //      .pipe(count('csslint', 'files lint free'));
 });
 
-gulp.task('css', ['clean'], function () {
+gulp.task('css', gulp.series('clean', function css () {
   return gulp.src(['./src/css/*', './src/css/**/*'])
       .pipe(plugins.header(banner, {pkg: pkg}))
       .pipe(gulp.dest('dist'));
-});
+}));
 
-gulp.task('cssmin', ['css'], function () {
+gulp.task('cssmin', gulp.series('css', function cssmin () {
   return gulp.src(['./src/css/*', './src/css/**/*'])
       .pipe(minifyCss({
         keepSpecialComments: 0
@@ -44,9 +44,9 @@ gulp.task('cssmin', ['css'], function () {
       .pipe(rename({ extname: '.min.css' }))
       .pipe(plugins.header(banner, {pkg: pkg}))
       .pipe(gulp.dest('dist'));
-});
+}));
 
-gulp.task('jshint', function () {
+gulp.task('jshint', function jshint () {
 //  return gulp.src(paths.js)
 //      .pipe(plugins.jshint())
 //      .pipe(plugins.jshint.reporter('jshint-stylish'))
@@ -54,20 +54,20 @@ gulp.task('jshint', function () {
 //      .pipe(count('jshint', 'files lint free'));
 });
 
-gulp.task('js', ['clean'], function () {
+gulp.task('js', gulp.series('clean', function js () {
   return gulp.src(['./src/js/*', './src/js/**/*'])
       .pipe(plugins.concat(destFileName))
       .pipe(rename({ extname: '.js' }))
       .pipe(plugins.header(banner, {pkg: pkg}))
       .pipe(gulp.dest('dist'));
-});
+}));
 
-gulp.task('uglify', ['js'], function () {
+gulp.task('uglify', gulp.series('js', function uglify () {
   return gulp.src(['./dist/*.js'])
       .pipe(plugins.uglify({mangle: false, output: {ascii_only: true}}))
       .pipe(rename({ extname: '.min.js' }))
       .pipe(plugins.header(banner, {pkg: pkg}))
       .pipe(gulp.dest('dist'));
-});
+}));
 
-gulp.task('default', ['clean', 'cssmin', 'uglify']);
+gulp.task('default', gulp.parallel('clean', 'cssmin', 'uglify'));

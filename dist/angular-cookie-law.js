@@ -1,5 +1,5 @@
 /**
- * @palmabit/angular-cookie-law - @version v0.4.2 - @author Palmabit Srl<hello@palmabit.com>
+ * @palmabit/angular-cookie-law - @version v0.4.3 - @author Palmabit Srl<hello@palmabit.com>
  */
 'use strict';
 
