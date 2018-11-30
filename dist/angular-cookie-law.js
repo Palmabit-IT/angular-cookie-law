@@ -1,5 +1,5 @@
 /**
- * @palmabit/angular-cookie-law - @version v0.4.3 - @author Palmabit Srl<hello@palmabit.com>
+ * @palmabit/angular-cookie-law - @version v0.5.0 - @author Palmabit Srl<hello@palmabit.com>
  */
 'use strict';
 
@@ -21,15 +21,31 @@ angular.module('angular-cookie-law')
           acceptText: '@',
           declineText: '@',
           policyText: '@',
-          policyURL: '@'
+          policyURL: '@',
+          acceptButton: '@',
+          declineButton: '@',
+          policyButton: '@',
+          policyBlank: '@',
+          expireDays: '@',
+          element: '@',
         },
         link: function (scope, element, attr) {
-          var template, options, expireDate,
-              acceptButton = '',
-              declineButton = '',
-              policyButton = '';
+          var template, options, expireDate;
 
-          scope.$watchGroup(['position', 'message', 'acceptText', 'declineText', 'policyText', 'policyURL'], function() {
+          scope.$watchGroup([
+            'position',
+            'message',
+            'acceptText',
+            'declineText',
+            'policyText',
+            'policyURL',
+            'acceptButton',
+            'declineButton',
+            'policyButton',
+            'policyBlank',
+            'expireDays',
+            'element',
+          ], function() {
             if (CookieLawService.isEnabled()) {
               return;
             }

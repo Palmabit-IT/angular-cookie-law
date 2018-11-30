@@ -137,7 +137,7 @@ Days number for the accept cookie expiration (default: 365).
 #### element
 
 ```
-expireDays: 'body'
+element: 'body'
 ```
 
 Element to append/prepend cookieBar to. Remember `.` for class or `#` for id. (default: "body").
