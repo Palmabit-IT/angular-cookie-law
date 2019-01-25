@@ -19,7 +19,7 @@ angular.module('angular-cookie-law')
           element: '@',
         },
         link: function (scope, element, attr) {
-          var template, options, expireDate;
+          var template, options, expireDate, acceptButton = '', declineButton = '', policyButton = '';
 
           scope.$watchGroup([
             'position',
